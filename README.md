@@ -9,9 +9,8 @@ This repository contains the code, experiments, and documentation for our COMSE6
 1. [Introduction](#introduction)
 2. [Project Objectives](#project-objectives)
 3. [Project Structure](#project-structure)
-4. [Setup Instructions](#setup-instructions)
-5. [User guide](#user-guide)
-6. [References](#references)
+4. [User guide](#user-guide)
+5. [References](#references)
 
 ---
 
@@ -19,7 +18,9 @@ This repository contains the code, experiments, and documentation for our COMSE6
 
 Large language models like GPT and BERT have transformed NLP but require significant computational resources to train. Our project simplifies English datasets using word2vec embeddings to reduce vocabulary size, enabling faster and cheaper evaluations of LLM architectures. This method allows researchers to test architectural changes with reduced computational constraints, providing a cost-effective and scalable solution.
 
----
+### Team：
+- Luke Tingley (lt2985)
+- Yuehui Ruan (yr2453)
 
 ## Project Objectives
 
@@ -32,7 +33,6 @@ Large language models like GPT and BERT have transformed NLP but require signifi
 - Evidence supporting or refuting the effectiveness of simplified datasets for model evaluation.
 - Insights into optimal vocabulary reduction techniques and their impact on model scaling.
 
----
 
 ## Project Structure
 
