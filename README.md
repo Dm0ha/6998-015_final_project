@@ -1,63 +1,18 @@
-# Expediting Model Evaluation Through Lexical Simplification
+# Tutorial
+## Installation and Environment Setup
+Using Python 3.12.4
+#### First, create the environement  
+`python -m venv .venv`
+#### Then activate the environment. This will depend on OS/platform. Here is the command for Windows:
+`.venv\Scripts\activate`
+#### Install the package requirements with pip:
+`pip install -r requirements.txt`
+  
+## Usage Example
+View demo.ipynb for a usage example
 
-This repository contains the code, experiments, and documentation for our COMSE6998 GenAI project. Our project introduces a novel approach to evaluate large language model (LLM) architectures using simplified English datasets, reducing computational costs and providing insights into architecture performance differences.
-
----
-
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Project Objectives](#project-objectives)
-3. [Project Structure](#project-structure)
-4. [User guide](#user-guide)
-5. [References](#references)
-
----
-
-## Introduction
-
-Large language models like GPT and BERT have transformed NLP but require significant computational resources to train. Our project simplifies English datasets using word2vec embeddings to reduce vocabulary size, enabling faster and cheaper evaluations of LLM architectures. This method allows researchers to test architectural changes with reduced computational constraints, providing a cost-effective and scalable solution.
-
-### Team：
-- Luke Tingley (lt2985)
-- Yuehui Ruan (yr2453)
-
-## Project Objectives
-
-### Key Goals
-- **Simplified English Dataset Creation**: Use word2vec to merge semantically similar words.
-- **LLM Architecture Evaluation**: Assess architecture performance using simplified datasets.
-- **Comparative Analysis**: Test whether performance differences on simplified datasets predict differences on full datasets.
-
-### Expected Outcomes
-- Evidence supporting or refuting the effectiveness of simplified datasets for model evaluation.
-- Insights into optimal vocabulary reduction techniques and their impact on model scaling.
-
-
-## Project Structure
-
-### Prerequisites
-- Python >= 3.8
-- pip or conda for package management
-- Access to GPU/TPU for training (e.g., GCP, AWS)
-
-### Prepare the dataset and pre-trained word2vec embeddings:
-- Download word2vec embeddings.
-- Place them in the data/ directory.
-
-## User guide
-
-
-## References
-
-- **Efficient Estimation of Word Representations in Vector Space (Mikolov et al., 2013)**  
-  [Link to Paper](https://arxiv.org/abs/1301.3781)
-
-- **Attention Is All You Need (Vaswani et al., 2017)**  
-  [Link to Paper](https://arxiv.org/abs/1706.03762)
-
-- **BERT: Pre-training of Deep Bidirectional Transformers (Devlin et al., 2018)**  
-  [Link to Paper](https://arxiv.org/abs/1810.04805)
-
-- **TinyStories Dataset (Eldan et al., 2023)**  
-  [Link to Paper](https://arxiv.org/abs/2305.07759)
+## Troubleshooting Guide
+- If getting stuck in `get_collapsed_words()`, consider increasing the `search_reduction_factor` parameter. It defaults to 25, but depending on the memory on your machine, this may be too low.
+- If getting the distance exception in `get_collapsed_words()`, try decreasing the collapse factor or increasing the `search_reduction_factor` parameter.
+- If there appears to be no difference between collapse factors, make sure you have either deleted `token_to_new_id` and `id_to_new_id`, or set the `use_saved` parameter to false in `get_collapsed_words()`.
+- If you are getting nonsense results, ensure that you are passing the train dataset's `id_to_new_id` to `create_dataset()` when creating the validation dataset.
