@@ -1,6 +1,6 @@
 import time
 from transformers import BertConfig
-from utils import get_vocab_size
+from utils import get_vocab_size, create_base_tokenizer
 import pickle
 from matplotlib import pyplot as plt
 from transformers import BertForMaskedLM
@@ -157,7 +157,9 @@ if __name__ == "__main__":
     try:
         original_vocab_size = get_vocab_size("base_tokenizer")
     except Exception as e:
-        raise Exception(f"Could not find the original tokenizer. Make sure it is downlaoded from HuggingFace and named 'base_tokenizer': {e}")
+        print("Missing tokenizer, downloading the default TinyStories tokenizer.")
+        create_base_tokenizer("roneneldan/TinyStories-33M")
+        original_vocab_size = get_vocab_size("base_tokenizer")
     new_vocab_size = int(original_vocab_size // collapse_factor)
 
     # Load the datasets created in the collapse stage

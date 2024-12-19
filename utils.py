@@ -1,6 +1,7 @@
 import os
 import shutil
 import json
+from huggingface_hub import snapshot_download
 
 """
 ------------------------------------------------------------------------------------
@@ -94,3 +95,19 @@ def num_params(model):
         # Add the number of elements in the tensor
         total += p.numel()
     return total
+
+
+def create_base_tokenizer(id):
+    """
+    Downloads and formats the base tokenizer files, used primarily for word counts.
+    
+    Args:
+        id: The hugging face ID, e.g. "roneneldan/TinyStories-33M"
+    """
+    snapshot_download(repo_id=id, cache_dir="./base_tokenizer")
+    # https://stackoverflow.com/questions/1724693/find-a-file-in-python
+    for root, _, files in os.walk("base_tokenizer"):
+        # Find each important file and copy it to the top of the directory
+        for name in ["config.json", "merges.txt", "pytorch_model.bin", "special_tokens_map.json", "tokenizer_config.json", "tokenizer.json", "vocab.json"]:
+            if name in files:
+                shutil.copy(os.path.join(root, name), "base_tokenizer")
