@@ -104,7 +104,7 @@ def create_base_tokenizer(id):
     Args:
         id: The hugging face ID, e.g. "roneneldan/TinyStories-33M"
     """
-    snapshot_download(repo_id=id, cache_dir="./base_tokenizer")
+    snapshot_download(repo_id=id, cache_dir="./base_tokenizer", local_dir_use_symlinks=False)
     # https://stackoverflow.com/questions/1724693/find-a-file-in-python
     for root, _, files in os.walk("base_tokenizer"):
         # Find each important file and copy it to the top of the directory
